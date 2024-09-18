@@ -1,0 +1,171 @@
+/* Container for text and carousel */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  gap: 40px; /* Increased gap to avoid overlap */
+}
+
+/* Text section styling */
+.text-section {
+  text-align: center;
+}
+
+/* Carousel section */
+.carousel-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Gallery setup */
+.gallery {
+--d: 30s; /* Total cycle duration, increased for 16 images */
+display: grid;
+width: 220px;
+height: 220px; /* Fixed height to control size */
+position: relative; /* Ensure proper image positioning */
+}
+
+/* Overlap images and manage z-index */
+.gallery > img {
+grid-area: 1 / 1; /* Overlap all images */
+width: 100%;
+aspect-ratio: 1;
+object-fit: cover;
+border: 10px solid #f2f2f2;
+box-shadow: 0 0 4px #0007;
+position: absolute; /* Ensure images overlap */
+animation: 
+  slide var(--d) infinite, /* Slide animation */
+  z-order var(--d) infinite steps(1); /* Z-index management */
+}
+
+/* Special handling for the last image */
+.gallery img:last-child {
+animation-name: slide, z-order-last;
+}
+
+/* Assign unique delays and rotations for each image */
+.gallery > img:nth-child(1) {
+animation-delay: calc(var(--d) * 0); /* Starts immediately */
+--r: 20deg;
+}
+
+.gallery > img:nth-child(2) {
+animation-delay: calc(var(--d) * -0.0625); /* Delayed 1/16 of cycle */
+--r: 3deg;
+}
+
+.gallery > img:nth-child(3) {
+animation-delay: calc(var(--d) * -0.125); /* Delayed 2/16 of cycle */
+--r: -5deg;
+}
+
+.gallery > img:nth-child(4) {
+animation-delay: calc(var(--d) * -0.1875); /* Delayed 3/16 of cycle */
+--r: 8deg;
+}
+
+.gallery > img:nth-child(5) {
+animation-delay: calc(var(--d) * -0.25); /* Delayed 4/16 of cycle */
+--r: -15deg;
+}
+
+.gallery > img:nth-child(6) {
+animation-delay: calc(var(--d) * -0.3125); /* Delayed 5/16 of cycle */
+--r: 5deg;
+}
+
+.gallery > img:nth-child(7) {
+animation-delay: calc(var(--d) * -0.375); /* Delayed 6/16 of cycle */
+--r: -8deg;
+}
+
+.gallery > img:nth-child(8) {
+animation-delay: calc(var(--d) * -0.4375); /* Delayed 7/16 of cycle */
+--r: 10deg;
+}
+
+.gallery > img:nth-child(9) {
+animation-delay: calc(var(--d) * -0.5); /* Delayed 8/16 of cycle */
+--r: -12deg;
+}
+
+.gallery > img:nth-child(10) {
+animation-delay: calc(var(--d) * -0.5625); /* Delayed 9/16 of cycle */
+--r: 6deg;
+}
+
+.gallery > img:nth-child(11) {
+animation-delay: calc(var(--d) * -0.625); /* Delayed 10/16 of cycle */
+--r: -7deg;
+}
+
+.gallery > img:nth-child(12) {
+animation-delay: calc(var(--d) * -0.6875); /* Delayed 11/16 of cycle */
+--r: 18deg;
+}
+
+.gallery > img:nth-child(13) {
+animation-delay: calc(var(--d) * -0.75); /* Delayed 12/16 of cycle */
+--r: -10deg;
+}
+
+.gallery > img:nth-child(14) {
+animation-delay: calc(var(--d) * -0.8125); /* Delayed 13/16 of cycle */
+--r: 9deg;
+}
+
+.gallery > img:nth-child(15) {
+animation-delay: calc(var(--d) * -0.875); /* Delayed 14/16 of cycle */
+--r: -2deg;
+}
+
+.gallery > img:nth-child(16) {
+animation-delay: calc(var(--d) * -0.9375); /* Delayed 15/16 of cycle */
+--r: 12deg;
+}
+
+/* Slide Animation: Moves image to the right and rotates */
+@keyframes slide {
+10% {
+  transform: translateX(120%) rotate(var(--r)); /* Slide out */
+}
+0%, 100%, 20% {
+  transform: translateX(0%) rotate(var(--r)); /* Reset position */
+}
+}
+
+/* Z-index Animation: Ensures images stack in the right order */
+@keyframes z-order {
+10%, 20% {
+  z-index: 1; /* Start at the back */
+}
+80% {
+  z-index: 2; /* Move to the front */
+}
+}
+
+/* Special z-index for the last image */
+@keyframes z-order-last {
+10%, 20% {
+  z-index: 1; /* Start at the back */
+}
+90% {
+  z-index: 2; /* Move to the front */
+}
+}
+
+/* Body styling */
+body {
+margin: 0;
+min-height: 100vh;
+display: grid;
+place-content: center;
+background: #CDB380;
+overflow: hidden;
+}
